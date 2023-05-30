@@ -1,0 +1,31 @@
+<form [formGroup]="myform" (ngSubmit)="Saveuser()">
+<h1 mat-dialog-title>{{inputdata.title}}</h1>
+<div mat-dialog-content>
+   <mat-form-field>
+    <mat-label >Name</mat-label>
+    <input formControlName="name" matInput required>
+    <mat-error *ngIf="formControls.name.errors?.['required'] && formControls.name.touched">Name is required</mat-error>
+   </mat-form-field>
+   <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required>
+    <mat-error *ngIf="formControls.email.errors?.['required'] && formControls.email.touched">Email is required</mat-error>
+    <mat-error *ngIf="formControls.email.errors?.['email'] && formControls.email.touched">Invalid email format</mat-error>
+
+   </mat-form-field>
+   <mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" required>
+    <mat-error *ngIf="formControls.phone.errors?.['required'] && formControls.phone.touched">Phone is required</mat-error>
+    <mat-error *ngIf="formControls.phone.errors?.['pattern'] && formControls.phone.touched">Invalid phone format</mat-error>
+   </mat-form-field>
+   <div>
+    <mat-checkbox formControlName="status">Is Active</mat-checkbox>
+   </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary">Save</button>
+  <button (click)="closepopup()" mat-raised-button color="warn">Close</button>
+  <!-- <button mat-raised-button [mat-dialog-close]="closemessage" color="accent">Cancel</button> -->
+</div>
+</form>
